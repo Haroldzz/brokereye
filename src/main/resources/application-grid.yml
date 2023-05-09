@@ -1,0 +1,5 @@
+application:
+  webdriver:
+    selenium.grid.url: http://selenium-grid:4444
+  browser:
+    name: chrome

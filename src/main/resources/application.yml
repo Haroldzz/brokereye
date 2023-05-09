@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: brokereye
+  profiles:
+    active: grid, dev
+  task:
+    execution:
+      thread-name-prefix: brokereye-task-
+      pool.core-size: 2
+      pool.max-size: 50
+      pool.queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: brokereye-scheduling-
+      pool.size: 2

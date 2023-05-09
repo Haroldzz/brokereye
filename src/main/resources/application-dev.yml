@@ -1,0 +1,55 @@
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.openqa.selenium: DEBUG
+    life.freebao.devops: DEBUG
+  file:
+    name: log/spring.log
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mariadb://mariadb01-test01:3306/db_broker?useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: dbwrite
+    password: dbpasswd
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+      data-source-properties.cachePrepStmts: true
+      data-source-properties.prepStmtCacheSize: 250
+      data-source-properties.prepStmtCacheSqlLimit: 2048
+      data-source-properties.useServerPrepStmts: true
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate.jdbc.time_zone: UTC
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.generate_statistics: false
+      # modify batch size as necessary
+      hibernate.jdbc.batch_size: 25
+      hibernate.order_inserts: true
+      hibernate.order_updates: true
+      hibernate.query.fail_on_pagination_over_collection_fetch: true
+      hibernate.query.in_clause_parameter_padding: true
+      hibernate.show_sql: true
+      hibernate.format_sql: true
+      hibernate.dialect: org.hibernate.dialect.MariaDBDialect
+    hibernate:
+      ddl-auto: update
+
+application:
+  webdriver:
+    baidu:
+      search.url: https://www.baidu.com
+      search.cron: 0/10 * * * * ? #remove line to disable task
+    circ:
+      query.url: http://www.baidu.com/query.html
+      query.cron: 45 * * * * ? #remove line to disable task
+      query.days: 90
+      ocr.url: http://ddddocr:9898/ocr/b64/json
+    screenshot.path: d:/tmp/captcha
+    browser:
+      name: chrome
+      options: --no-sandbox,--window-size=320/640,--disable-gpu #--headless
+    timeout: 30
